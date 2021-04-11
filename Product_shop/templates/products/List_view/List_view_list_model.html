@@ -1,0 +1,402 @@
+{% extends "Main_template/__MAIN_tamplate.html" %}
+{% load static %}
+{% load render_partial %}
+
+
+{% block content %}
+
+    <div class="contant">
+        <div id="banner-part" class="banner inner-banner">
+        <div class="container">
+            <div class="bread-crumb-main">
+                <h1 class="banner-title">دسته بندی</h1>
+                <div class="breadcrumb">
+                    <ul class="inline">
+                        <li><a href="/">خانه</a></li>
+                        <li>دسته بندی</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="ptb-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-lg-4 col-xl-3">
+                                    <div class="sidebar mb-md-30">
+                                        <div class="sidebar-category sidebar-default">
+                                            {% render_partial 'product_collect'  %}
+                                        </div>
+                                        <div class="sidebar-default">
+                                            <div class="category-content">
+                                                <h2 class="cat-title">فیلتر بر اساس</h2>
+                                                <a class="btn btn-color small btn-filter mb-20" href="#"><i class="fa fa-close"></i><span>حذف همه</span></a>
+                                                <div class="mb-20">
+                                                    <div class="inner-title">نوع</div>
+                                                    <ul>
+                                                            <li>
+                                                                <div class="check-box">
+                                                                    <span>
+                                                                        <input type="checkbox" class="checkbox" id="type1" name="type1">
+                                                                        <label for="type1">تاپ <span>(05)</span></label>
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="check-box">
+                                                                    <span>
+                                                                        <input type="checkbox" class="checkbox" id="type2" name="type2">
+                                                                        <label for="type2">تیشرت <span>(02)</span></label>
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="check-box">
+                                                                    <span>
+                                                                        <input type="checkbox" class="checkbox" id="type3" name="type3">
+                                                                        <label for="type3">پیراهن <span>(07)</span></label>
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="check-box">
+                                                                    <span>
+                                                                        <input type="checkbox" class="checkbox" id="type4" name="type4">
+                                                                        <label for="type4">جین <span>(03)</span></label>
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="mb-20">
+                                                    <div class="inner-title">قیمت</div>
+                                                    <ul>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="price1" name="price1">
+                                                                    <label for="price1">68،000 تومان - 72،000 تومان <span>(02)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="price2" name="price2">
+                                                                    <label for="price2">86،000 تومان - 90،000 تومان <span>(13)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="price3" name="price3">
+                                                                    <label for="price3">90،000 تومان - 103،000 تومان <span>(08)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="price4" name="price4">
+                                                                    <label for="price4">104،000 تومان - 108،000 تومان <span>(04)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="price5" name="price5">
+                                                                    <label for="price5">109،000 تومان - 113،000 تومان <span>(09)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="mb-20">
+                                                    <div class="inner-title">برند</div>
+                                                    <ul>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="brand1" name="brand1">
+                                                                    <label for="brand1">پوما <span>(02)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="brand2" name="brand2">
+                                                                    <label for="brand2">روداستار <span>(13)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="brand3" name="brand3">
+                                                                    <label for="brand3">جین وست <span>(08)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="brand4" name="brand4">
+                                                                    <label for="brand4">پوشاکو <span>(04)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="check-box">
+                                                                <span>
+                                                                    <input type="checkbox" class="checkbox" id="brand5" name="brand5">
+                                                                    <label for="brand5">ایران جین <span>(09)</span></label>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="">
+                                                      <div class="inner-title">رنگ</div>
+                                                        <ul>
+                                                            <li>
+                                                                <div class="check-box">
+                                                                    <span>
+                                                                        <input type="checkbox" class="checkbox" id="color1" name="color1">
+                                                                        <label for="color1" class="orange">نارنجی</label>
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="check-box">
+                                                                    <span>
+                                                                        <input type="checkbox" class="checkbox" id="color2" name="color2">
+                                                                        <label for="color2" class="sky-blue">آبی آسمانی</label>
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="check-box">
+                                                                    <span>
+                                                                        <input type="checkbox" class="checkbox" id="color3" name="color3">
+                                                                        <label for="color3" class="black">مشکی</label>
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="check-box">
+                                                                    <span>
+                                                                        <input type="checkbox" class="checkbox" id="color4" name="color4">
+                                                                        <label for="color4" class="green">سبز</label>
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="check-box">
+                                                                    <span>
+                                                                        <input type="checkbox" class="checkbox" id="color5" name="color5">
+                                                                        <label for="color5" class="pink">صورتی</label>
+                                                                    </span>
+                                                                </div>
+                                                            </li>
+                                                </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="sidebar-default sidebar-banner d-none d-lg-block">
+                                            <a href="{% static 'javascript:void(0)' %}">
+                                                <img src="{% static 'images/sidebar-banner.jpg' %}" alt="">
+                                            </a>
+                                        </div>
+                                        <div class="sidebar-default">
+                                             <div class="sidebar-product">
+                                                    <h2 class="cat-title">آخرین محصولات</h2>
+                                                    <ul>
+                                                        <li>
+                                                            <div class="pro-media"> <a href=""><img alt="" src="{% static 'images/1.jpg' %}"></a> </div>
+                                                        <div class="pro-detail-info"> <a href="" class="product-title">تی شرت ساده نخی زنانه</a>
+                                                            <div class="price-box">
+                                                                <span class="price">65،000 تومان</span>
+                                                                <del class="price old-price">70،000 تومان</del>
+                                                            </div>
+                                                            <div class="cart-link">
+                                                                <form>
+                                                                    <button title="افزودن به سبد خرید">افزودن به سبد خرید</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="pro-media"> <a href=""><img alt="T-shirt" src="{% static 'images/2.jpg' %}"></a> </div>
+                                                            <div class="pro-detail-info"> <a href="" class="product-title">پیراهن معمولی چاپی مردانه</a>
+                                                                <div class="price-box"> <span class="price">80،000 تومان</span> </div>
+                                                                <div class="cart-link">
+                                                                    <form>
+                                                                        <button title="افزودن به سبد خرید">افزودن به سبد خرید</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="pro-media"> <a href=""><img alt="T-shirt" src="{% static 'images/3.jpg' %}"></a> </div>
+                                                            <div class="pro-detail-info"> <a href="" class="product-title">پیراهن آفریقایی مشکی</a>
+                                                                <div class="price-box"> <span class="price">80،000 تومان</span> </div>
+                                                                <div class="cart-link">
+                                                                    <form>
+                                                                        <button title="افزودن به سبد خرید">افزودن به سبد خرید</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                    <div class="col-12 col-lg-8 col-xl-9">
+                        <div class="shorting mb-30">
+                             <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="view">
+                                        <div class="list-types grid ">
+                                            <a href="/list_view">
+                                                <div class="grid-icon list-types-icon"></div>
+                                            </a>
+                                        </div>
+                                        <div class="list-types list active">
+                                            <a href="/list_view_list_model">
+                                                <div class="list-icon list-types-icon"></div>
+                                            </a>
+                                        </div>
+                                        </div>
+                                        <div class="short-by float-right-md"> <span>مرتب سازی</span>
+                                            <div class="select-item">
+                                                <select>
+                                                    <option value="" selected="selected">اسم محصول</option>
+                                                    <option value="">محبوب ترین ها</option>
+                                                    <option value="">قیمت از زیاد به کم</option>
+                                                    <option value="">قیمت از کم به زیاد</option>
+                                                    <option value="">پر فروش ها</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="show-item left-side float-left-md"> <span>نمایش</span>
+                                            <div class="select-item">
+                                                <select>
+                                                    <option value="" selected="selected">24</option>
+                                                    <option value="">12</option>
+                                                    <option value="">6</option>
+                                                </select>
+                                            </div>
+                                            <span>هر صفحه</span>
+                                            <div class="compare float-right-sm">
+                                                <a href="#" class="btn btn-color">مقایسه (0)</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                             </div>
+                        </div>
+                        <div class="product-section list-view">
+                            <div class="row">
+                                {% for obj in object_list %}
+                                <div class="col-6 col-sm-12">
+                                     <div class="product-item">
+                                          <figure>
+                                                <div class="product-image">
+                                                    <div class="sale-label"><span>تخفیف</span></div>
+                                                    <a href="{{ obj.get_absolute_url }}">
+                                                        <img src="{{ obj.product_image.url}}" alt="">
+                                                    </a>
+                                                </div>
+                                                <figcaption>
+                                                    <div class="product-details-outer">
+                                                         <div class="product-details">
+                                                            <div class="product-title">
+                                                                <a href="{{ obj.get_absolute_url }}">{{ obj.product_name }}</a>
+                                                            </div>
+                                                            <div class="price-box">
+                                                                <span class="price">{{ obj.product_price }} تومان</span>
+                                                                <del class="price old-price">200،000 تومان</del>
+                                                            </div>
+                                                            <div class="product-des d-none d-sm-block">
+                                                                <p>{{ obj.product_description | truncatewords:30 }}</p>
+                                                            </div>
+                                                            <div class="product-details-btn d-none d-sm-block">
+                                                            <ul>
+                                                                <li class="icon cart-icon">
+                                                                    <a href="cart.html">
+                                                                        <span></span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="icon wishlist-icon">
+                                                                     <form method="post" action="/makefavorite" >
+                                                {% csrf_token %}
+
+                                                 <input name="salam" value="{{ p.id }}"type="hidden">
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+                                                                </li>
+
+                                                            </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </figcaption>
+                                          </figure>
+                                     </div>
+                                </div>
+                                {% endfor %}
+                             </div>
+                        </div>
+
+                        <div class="shorting center-md">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="pagination-bar">
+                                        <ul>
+
+                                            {% if page_obj.has_previous %}
+
+                                                <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+
+                                            {% endif %}
+
+                                            {% for page in paginator.page_range %}
+                                            {% if page == page_obj.number %}
+                                            <li class="active"><a href="?page={{ page }}">{{ page }}</a></li>
+
+                                            {% else %}
+
+                                           <li><a href="?page={{ page }}">{{ page }}</a></li>
+
+                                            {% endif %}
+                                            {% endfor %}
+                                            {% if page_obj.has_next %}
+
+                                                <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                     <div class="show-item left-side float-none-md">
+                                        <span class="float-none-md d-block">نمایش 1 از 15 صفحه</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

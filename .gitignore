@@ -1,0 +1,4 @@
+venv/
+__pycach__/
+db.sqlite3
+static_cdn

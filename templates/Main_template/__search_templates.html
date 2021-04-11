@@ -1,0 +1,43 @@
+{#<div id="preloader"></div>#}
+
+<div class="sidebar-search-wrap">
+    <div class="sidebar-table-container">
+        <div class="sidebar-align-container">
+            <div class="search-closer right-side"></div>
+            <div class="search-container">
+                <form method="get" id="search-form" action="/list_view/search">
+                    <input type="text" id="s" class="search-input" name="q" placeholder="جستجو کنید" value="{{ request.GET.q }}">
+                </form>
+                <span>محصول مورد نظر را جستجو کنید</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="newslater-popup" class="mfp-hide white-popup-block open align-center">
+    <div class="nl-popup-main">
+        <div class="nl-popup-inner">
+            <div class="newsletter-inner">
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6">
+                        <div class="mtb-30">
+                            <h2 class="main_title">اشتراک محصولات</h2>
+                            <span class="sub-title mb-30">ثبت نام کنید و 10٪ تخفیف بگیرید</span>
+                            <form>
+                                <input type="email" placeholder="ایمیل خود را وارد کنید">
+                                <button class="btn-color big-width btn" title="اشتراک">اشتراک</button>
+                            </form>
+                            <div class="check-box mt-30">
+                                <span>
+                                    <input type="checkbox" class="checkbox" id="different-address" name="Ship to a different address?">
+                                    <label for="different-address">دیگه به من این و نشون نده</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

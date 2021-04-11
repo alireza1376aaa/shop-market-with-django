@@ -1,0 +1,218 @@
+{% load humanize %}
+
+                                     {% if obj.product_type == 'simple'%}
+                                    <div class="col-lg-4 col-md-4 col-6">
+                                            <div class="product-item">
+                                            <div class="product-image">
+                                            <a href="{{ obj.get_absolute_url }}">
+                                            <img src="{{ obj.product_image.url}}" alt="{{ obj.product_name }}">
+                                            </a>
+                                            </div>
+                                            <div class="product-details-outer">
+                                            <div class="product-details">
+                                            <div class="product-title">
+                                            <a href="{{ obj.get_absolute_url }}">{{ obj.product_name }}</a>
+                                            </div>
+                                            <div class="price-box">
+                                            <span class="price">{{ obj.product_price|intcomma:False  }} تومان</span>
+                                            </div>
+                                            </div>
+                                    <div class="product-details-btn">
+                                        <ul>
+                                            <li class="icon cart-icon">
+                                                <form method="post" action="/makecarts">
+                                                {% csrf_token %}
+
+                                                 <input name="productid_small" value="{{ obj.id }}" type="hidden">
+                                                 <input name="count_small" value="1" type="hidden">
+
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+                                            <li class="icon wishlist-icon">
+                                                <form method="post" action="/makefavorite" >
+                                                {% csrf_token %}
+
+                                                 <input name="salam" value="{{ obj.id }}"type="hidden">
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+
+                                         </ul>
+                                    </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                    {% endif %}
+
+                                     {% if obj.product_type == 'new' and obj.price_discount == 0 %}
+                                    <div class="col-lg-4 col-md-4 col-6">
+                                        <div class="product-item">
+                                            <div class="product-image">
+                                                <div class="new-label"><span>جدید</span></div>
+
+                                                <a href="{{ obj.get_absolute_url }}">
+                                                    <img src="{{ obj.product_image.url}}" alt="{{ obj.product_name }}">
+                                                </a>
+                                            </div>
+
+                                            <div class="product-details-outer">
+                                                <div class="product-details">
+                                                    <div class="product-title">
+                                                        <a href="{{ obj.get_absolute_url }}">{{ obj.product_name }}</a>
+                                                    </div>
+                                                    <div class="price-box">
+                                                        <span class="price">{{ obj.product_price|intcomma:False  }} تومان</span>
+                                                    </div>
+                                                </div>
+                                    <div class="product-details-btn">
+                                        <ul>
+                                            <li class="icon cart-icon">
+                                                <form method="post" action="/makecarts">
+                                                {% csrf_token %}
+
+                                                 <input name="productid_small" value="{{ obj.id }}" type="hidden">
+                                                 <input name="count_small" value="1" type="hidden">
+
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+                                            <li class="icon wishlist-icon">
+                                                <form method="post" action="/makefavorite" >
+                                                {% csrf_token %}
+
+                                                 <input name="salam" value="{{ obj.id }}"type="hidden">
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+
+                                         </ul>
+                                    </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                     {% if obj.product_type == 'discount'%}
+                                    <div class="col-lg-4 col-md-4 col-6">
+                                        <div class="product-item">
+                                            <div class="product-image">
+                                                <div class="sale-label"><span>تخفیف</span></div>
+
+                                                <a href="{{ obj.get_absolute_url }}">
+                                                    <img src="{{ obj.product_image.url}}" alt="{{ obj.product_name }}">
+                                                </a>
+                                            </div>
+
+                                            <div class="product-details-outer">
+                                                <div class="product-details">
+                                                    <div class="product-title">
+                                                        <a href="{{ obj.get_absolute_url }}">{{ obj.product_name }}</a>
+                                                    </div>
+                                                    <div class="price-box">
+                                                        <span class="price">{{ obj.discount|intcomma:False  }} تومان</span>
+                                                        <del class="price old-price">{{ obj.product_price|intcomma:False  }} تومان</del>
+                                                    </div>
+                                                </div>
+                                    <div class="product-details-btn">
+                                        <ul>
+                                            <li class="icon cart-icon">
+                                                <form method="post" action="/makecarts">
+                                                {% csrf_token %}
+
+                                                 <input name="productid_small" value="{{ obj.id }}" type="hidden">
+                                                 <input name="count_small" value="1" type="hidden">
+
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+                                            <li class="icon wishlist-icon">
+                                                <form method="post" action="/makefavorite" >
+                                                {% csrf_token %}
+
+                                                 <input name="salam" value="{{ obj.id }}"type="hidden">
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+
+                                         </ul>
+                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+
+                                      {% if obj.product_type == 'new' and obj.price_discount > 0%}
+                                    <div class="col-lg-4 col-md-4 col-6">
+                                        <div class="product-item">
+                                            <div class="product-image">
+                                                <div class="sale-label"><span>تخفیف</span></div>
+                                                <div class="new-label"><span>جدید</span></div>
+
+                                                <a href="{{ obj.get_absolute_url }}">
+                                                    <img src="{{ obj.product_image.url}}" alt="{{ obj.product_name }}">
+                                                </a>
+                                            </div>
+
+                                            <div class="product-details-outer">
+                                                <div class="product-details">
+                                                    <div class="product-title">
+                                                        <a href="{{ obj.get_absolute_url }}">{{ obj.product_name }}</a>
+                                                    </div>
+                                                    <div class="price-box">
+                                                        <span class="price">{{ obj.discount|intcomma:False  }} تومان</span>
+                                                        <del class="price old-price">{{ obj.product_price|intcomma:False  }} تومان</del>
+                                                    </div>
+                                                </div>
+                                    <div class="product-details-btn">
+                                        <ul>
+                                            <li class="icon cart-icon">
+                                                <form method="post" action="/makecarts">
+                                                {% csrf_token %}
+
+                                                 <input name="productid_small" value="{{ obj.id }}" type="hidden">
+                                                 <input name="count_small" value="1" type="hidden">
+
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+                                            <li class="icon wishlist-icon">
+                                                <form method="post" action="/makefavorite" >
+                                                {% csrf_token %}
+
+                                                 <input name="salam" value="{{ obj.id }}"type="hidden">
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+
+                                         </ul>
+                                    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}

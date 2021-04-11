@@ -1,0 +1,292 @@
+{% extends 'Main_template/__MAIN_tamplate.html' %}
+{% load static %}
+{% load render_partial %}
+{% load humanize %}
+
+{% block content  %}
+
+<div class="contant">
+    <div id="banner-part" class="banner inner-banner">
+        <div class="container">
+            <div class="bread-crumb-main">
+                <h1 class="banner-title">دسته بندی</h1>
+                <div class="breadcrumb">
+                    <ul class="inline">
+                        <li><a href="/">خانه</a></li>
+                        <li>دسته بندی</li>
+                        <li>مردانه</li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ptb-100">
+          <div class="container">
+                 <div class="row">
+                    <div class="col-12 col-lg-4 col-xl-3">
+                        <div class="sidebar mb-md-30">
+                            <div class="sidebar-category sidebar-default">
+
+                                    {% render_partial 'product_collect_men' %}
+
+                            </div>
+                            <div class="sidebar-default">
+                                <div class="category-content">
+                                    <h2 class="cat-title">فیلتر بر اساس</h2>
+                                    <a class="btn btn-color small btn-filter mb-20" href="#"><i class="fa fa-close"></i><span>حذف همه</span></a>
+                                    <div class="mb-20">
+                                        <div class="inner-title">نوع</div>
+                                        <ul>
+                                                 {% for filter_type in collect_type %}
+                                                <li>
+                                                    <div class="check-box">
+                                                        <span>
+                                                            <input type="checkbox" class="checkbox" id="type{{ forloop.counter }}" name="type{{ forloop.counter }}">
+                                                            <label for="type{{ forloop.counter }}">{{ filter_type.title_collect_product_type }} </label>
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="mb-20">
+                                        <div class="inner-title">قیمت</div>
+                                        <ul>
+                                            <li>
+                                                <div class="check-box">
+                                                    <span>
+                                                        <input type="checkbox" class="checkbox" id="price1" name="price1">
+                                                        <label for="price1">68،000 تومان - 72،000 تومان <span>(02)</span></label>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="check-box">
+                                                    <span>
+                                                        <input type="checkbox" class="checkbox" id="price2" name="price2">
+                                                        <label for="price2">86،000 تومان - 90،000 تومان <span>(13)</span></label>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="check-box">
+                                                    <span>
+                                                        <input type="checkbox" class="checkbox" id="price3" name="price3">
+                                                        <label for="price3">90،000 تومان - 103،000 تومان <span>(08)</span></label>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="check-box">
+                                                    <span>
+                                                        <input type="checkbox" class="checkbox" id="price4" name="price4">
+                                                        <label for="price4">104،000 تومان - 108،000 تومان <span>(04)</span></label>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="check-box">
+                                                    <span>
+                                                        <input type="checkbox" class="checkbox" id="price5" name="price5">
+                                                        <label for="price5">109،000 تومان - 113،000 تومان <span>(09)</span></label>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="mb-20">
+                                        <div class="inner-title">برند</div>
+                                        <ul>
+                                               {% for product_filter in page_obj %}
+                                            <li>
+                                                <div class="check-box">
+                                                    <span>
+                                                        <input type="checkbox" class="checkbox" id="brand{{ forloop.counter }}" name="brand{{ forloop.counter }}">
+                                                        <label for="brand{{ forloop.counter }}">{{ product_filter.product_brand }} </label>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                         {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="">
+                                          <div class="inner-title">رنگ</div>
+                                            <ul>
+                                            {% for product_filter in colors %}
+                                                <li>
+                                                    <div class="check-box">
+                                                        <span>
+                                                            <input type="checkbox" class="checkbox" id="color{{ forloop.counter }}" name="color{{ forloop.counter }}">
+                                                            <label for="color{{ forloop.counter }}" class="{{ product_filter.product_color_english }}">{{ product_filter.product_color }}</label>
+                                                        </span>
+                                                    </div>
+
+                                                </li>
+                                                {% endfor %}
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="sidebar-default">
+                                <div class="sidebar-product">
+                                        <h2 class="cat-title">آخرین محصولات</h2>
+                                        <ul>
+                                            {% for sugest_time in sugest %}
+                                            {% if sugest_time.product_type == 'discount'%}
+                                            <li>
+                                                <div class="pro-media"> <a href="{{ sugest_time.get_absolute_url }}"><img alt="{{ sugest_time.product_name }}" src="{{ sugest_time.product_image.url }}"></a> </div>
+                                            <div class="pro-detail-info"> <a href="{{ sugest_time.get_absolute_url }}" class="product-title">{{ sugest_time.product_name }}</a>
+                                                <div class="price-box">
+                                                    <span class="price">{{ sugest_time.discount|intcomma:False  }} تومان</span>
+                                                    <del class="price old-price">{{ sugest_time.product_price|intcomma:False  }} تومان</del>
+                                                </div>
+
+                                            </div>
+                                            </li>
+                                            {% endif %}
+                                            {% if sugest_time.product_type != 'discount'%}
+
+                                            <li>
+                                                <div class="pro-media"> <a href="{{ sugest_time.get_absolute_url }}"><img alt="{{ sugest_time.product_name }}" src="{{ sugest_time.product_image.url }}"></a> </div>
+                                                <div class="pro-detail-info"> <a href="{{ sugest_time.get_absolute_url }}" class="product-title">{{ sugest_time.product_name }}</a>
+                                                    <div class="price-box"> <span class="price">{{ sugest_time.product_price|intcomma:False  }} تومان</span> </div>
+
+                                                </div>
+                                            </li>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                 </div>                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-8 col-xl-9">
+                        <div class="shorting mb-30">
+                         <form method="post" class="main-form full">
+
+                             <div class="row">
+                                    <div class="col-lg-6">
+
+                                        <div class="view">
+                                        <div class="list-types grid active">
+                                            <a href="/list_view">
+                                                <div class="grid-icon list-types-icon"></div>
+                                            </a>
+                                        </div>
+                                        <div class="list-types list">
+                                            <a href="/list_view-list-model">
+                                                <div class="list-icon list-types-icon"></div>
+                                            </a>
+                                        </div>
+                                        </div>
+                                        <div class="short-by float-right-md"> <span>مرتب سازی</span>
+                                            <div class="select-item">
+                                                    {% csrf_token %}
+                                                    {{ form.filter_pro }}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="show-item left-side float-left-md"> <span>نمایش</span>
+                                            <div class="select-item">
+                                                {% csrf_token %}
+                                                    {{ form.page }}
+
+
+
+                                            </div>
+                                            <span>هر صفحه</span>
+                                            <div class="compare float-right-sm">
+                                                <button type="submit" class="btn btn-color">اعمال </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </form>
+                             </div>
+                    </div>
+                        <div class="product-section grid-view">
+                            <div class="row">
+
+                                {% if order_filter_number == '1' %}
+                                {% for obj in page_obj|dictsort:'product_name' %}
+                                {% include 'products/product/my product.html' %}
+                                {% endfor %}
+
+                                {% elif order_filter_number == '2' %}
+                                 {% for obj in page_obj|dictsortreversed:'product_visit' %}
+                                {% include 'products/product/my product.html' %}
+                                {% endfor %}
+
+                                 {% elif order_filter_number == '3' %}
+                                 {% for obj in page_obj|dictsortreversed:'product_price' %}
+                                {% include 'products/product/my product.html' %}
+                                {% endfor %}
+
+                                 {% elif order_filter_number == '4' %}
+                                 {% for obj in page_obj|dictsort:'product_price' %}
+                                {% include 'products/product/my product.html' %}
+                                {% endfor %}
+
+                                {% elif order_filter_number == '5' %}
+                                 {% for obj in page_obj|dictsortreversed:'product_date' %}
+                                {% include 'products/product/my product.html' %}
+                                {% endfor %}
+
+                                {% else %}
+
+                                {% for obj in page_obj %}
+                                {% include 'products/product/my product.html' %}
+                                {% endfor %}
+
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+                        <div class="shorting center-md">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="pagination-bar">
+                                        <ul>
+
+                                            {% if page_obj.has_previous %}
+
+                                                <li><a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+
+                                            {% endif %}
+                                           {% for page in page_obj.paginator %}
+                                            {% if page == page_obj.number %}
+                                            <li class="active"><a href="?page={{ page.number }}">{{ page.number }}</a></li>
+
+                                            {% else %}
+
+                                           <li><a href="?page={{ page.number }}">{{ page.number }}</a></li>
+
+                                            {% endif %}
+                                            {% endfor %}
+                                            {% if page_obj.has_next %}
+
+                                                <li><a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                                            {% endif %}
+                                        </ul>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                     <div class="show-item left-side float-none-md">
+                                        <span class="float-none-md d-block">نمایش {{ page_obj.number }} از {{ page_obj.paginator.num_pages }} صفحه</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+    </div>
+</div>
+
+{% endblock %}
+

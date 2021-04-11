@@ -1,0 +1,51 @@
+{% load render_partial %}
+{% load static %}
+<!DOCTYPE html>
+<html dir="rtl" lang="fa-IR">
+
+<head>
+
+    {% block title %}{% endblock %}
+
+    {% include 'Main_template/__header_code_template.html' %}
+
+</head>
+
+<body class="text-right">
+
+
+
+     {% with some_var=6 %}
+
+        {% render_partial 'Search'  arg1=36 arg2=some_var %}
+
+    {% endwith %}
+
+<div class="main">
+
+
+
+    {% render_partial 'Navigation'  %}
+
+
+
+    {% block content %}{% endblock %}
+
+       {% with some_var=4 %}
+
+            {% render_partial 'Footer' arg1=38 arg2=some_var %}
+
+       {% endwith %}
+
+    {% include 'Main_template/__footer_code_template.html' %}
+
+
+
+
+</div>
+
+    {% block javascript %}
+    {% endblock javascript %}
+
+</body>
+</html>

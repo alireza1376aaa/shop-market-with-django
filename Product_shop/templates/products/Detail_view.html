@@ -1,0 +1,329 @@
+{% extends 'Main_template/__MAIN_tamplate.html' %}
+{% load static %}
+{% load humanize %}
+{% url 'favorite_product:favorite_page' as favorite %}
+
+{% block content %}
+
+
+    <div class="contant">
+        <div id="banner-part" class="banner inner-banner">
+            <div class="container">
+                <div class="bread-crumb-main">
+                    <h1 class="banner-title">{{ object.product_name }}</h1>
+                    <div class="breadcrumb">
+                        <ul class="inline">
+                            <li><a href="/">خانه</a></li>
+                            <li><a href="/list_view/{{ object.product_Gender }}">{% if object.product_Gender == 'men' %}مردانه{% endif %}{% if object.product_Gender == 'women' %}زنانه{% endif %}{% if object.product_Gender == 'kids' %}بچگانه{% endif %}</a></li>
+                            <li>{{ object.product_name }}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ptb-100">
+             <div class="container">
+                 <div class="row">
+                    <div class="col-lg-5 col-md-6 col-12">
+                          <div class="align-center mb-md-30">
+
+                             <ul id="glasscase" class="gc-start">
+                                <li><img src="{{ object.product_image.url }}" alt="" /></li>
+                               {% for gallery in grouped_gallery %}
+                                 {% for gallerys in gallery %}
+                                     <li><img src="{{ gallerys.image.url }}" alt="" /></li>
+                                  {% endfor %}
+
+                               {% endfor %}
+                            </ul>
+                          </div>
+                    </div>
+                    <div class="col-lg-7 col-md-6 col-12">
+                    <form method="post" action="/makecarts">
+                        <div class="product-detail-main">
+                             <div class="product-item-details">
+                                <h1 class="product-item-name">{{ object.product_name }}  {{ object.products_tag}}</h1>
+                               {% if object.product_type == 'simple' or object.product_type == 'new' %}
+                                    <div class="price-box"> <span class="price">{{ object.product_price|intcomma:False }} تومان</span>
+                                    </div>
+                               {% else %}
+                                  <div class="price-box"> <span class="price">{{ object.discount|intcomma:False  }} تومان</span>
+                                     <del class="price old-price">{{ object.product_price|intcomma:False }} تومان</del>
+                                    </div>
+                                 {% endif %}
+                                <div class="rating-main">
+
+                                    <span>{{ len_massage }} دیدگاه</span>
+                                </div>
+                                <div class="product-des">
+                                     <p>{{ object.product_description }}</p>
+                                </div>
+                                <ul class="product-list">
+                                    <li><i class="fa fa-check"></i> ضمانت هفت روز بازگشت کالا</li>
+                                    <li><i class="fa fa-check"></i> تحویل سریع و آسان</li>
+                                    <li><i class="fa fa-check"></i> ضمانت اصل بودن کالا</li>
+                                </ul>
+                                <hr class="mb-20">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="table-listing qty mb-20">
+                                            <div class="row">
+                                                <div class="col-xl-2 col-md-3 col-sm-12">
+                                                        <span>تعداد</span>
+                                                </div>
+                                                <div class="col-xl-10 col-md-9 col-sm-12">
+                                                    <div class="custom-qty">
+
+                                                            <button onclick="var result = document.getElementById('qty1'); var qty1 = result.value; if( !isNaN( qty1 ) && qty1 > 1 ) result.value--;return false;" class="reduced items" type="button"> <i class="fa fa-minus"></i> </button>
+                                                          {% csrf_token %}
+                                                            {{ basket.product_id }}
+                                                            {{ basket.count }}
+
+                                                            <button onclick="var result = document.getElementById('qty1'); var qty1 = result.value; if (!isNaN(qty1))result.value++;return false;" class="increase items" type="button"> <i class="fa fa-plus"></i> </button>
+
+                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="table-listing product-size select-arrow mb-20">
+                                            <div class="row">
+                                                <div class="col-xl-2 col-md-3 col-sm-12">
+                                                     <span>انتخاب سایز </span>
+                                                </div>
+                                                <div class="col-xl-10 col-md-9 col-sm-12">
+                                                    <select class="selectpicker full" id="select-by-size">
+                                                        {% for size_name in size %}
+
+                                                        <option selected="selected" value="{{ size_name }}">{{ size_name.product_size }}</option>
+
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                             </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="table-listing product-color select-arrow mb-20">
+                                            <div class="row">
+                                                <div class="col-xl-2 col-md-3 col-12">
+                                                     <span>انتخاب رنگ</span>
+                                                </div>
+                                                <div class="col-xl-10 col-md-9 col-12">
+                                                    <select class="selectpicker full" id="select-by-color">
+                                                        {% for color_name in color %}
+
+                                                        <option selected="selected" value="{{ color_name }}">{{ color_name }}</option>
+
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="mb-20">
+                                <div class="product-details-btn">
+                                     <ul>
+                                        <li class="icon cart-icon">
+                                            <button type="submit" class="btn btn-color"><span></span>افزودن به سبد خرید</button>
+                                        </li>
+                    </form>
+
+                                        <li class="icon wishlist-icon">
+
+                                              <form method="post" action="/makefavorite" >
+                                                {% csrf_token %}
+                                                  {{ favorite.product_id }}
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                        </li>
+                                        <li class="icon compare-icon">
+{#                                            <a href="#" class="btn btn-transparent"><span></span></a>#}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="product-tab-part position-r pb-100">
+        <div class="container">
+            <div class="product-tab-inner">
+                 <div class="row">
+                     <div class="col-12">
+                        <div id="tabs">
+                            <ul class="nav nav-tabs">
+                                <li><a class="tab-Description selected" title="Description">توضیحات محصول</a></li>
+                                <li><a class="tab-Tags" title="Tags">برچسب ها</a></li>
+                                <li><a class="tab-Review" title="Review">دیدگاه ها</a></li>
+                            </ul>
+                        </div>
+                        <div id="items">
+                            <div class="tab_content">
+                                <ul>
+                                    <li>
+                                    <div class="items-Description selected">
+                                        <p>{{ object.product_description|linebreaks }}</p>
+                                    </div>
+                                    </li>
+                                    <li>
+                                        <div class="items-Tags">
+                                            {% for tag_name in tag %}
+                                            <a href="/Women_list_view/search?q={{ tag_name }}" class="badge badge-secondary text-light font-weight-light p-1">{{tag_name}}</a>
+                                            {% endfor %}
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="items-Review">
+                                            <div class="comment-part">
+                                                <h3 class="head-three">{{ len_massage }} دیدگاه</h3>
+                                                <ul class="comment-list mt-30">
+                                                    {% for comment in comment_massage %}
+                                                    <li>
+                                                    {{ comment.product_id }}
+                                                        <div class="comment-user">
+                                                            <img src="{% static 'images/user_comment.png' %}" alt="comment-img" style="height: 85px">
+                                                        </div>
+                                                        <div class="comment-detail">
+                                                            <span class="commenter">{{ comment.fullname }}</span>
+                                                            <p>{{ comment.massege }}</p>
+                                                            <div  class="reply-btn btn btn-color small">{{ comment.subject }}</div>
+                                                        </div>
+                                                        <div class="clearfix"></div>
+                                                    </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                            <div class="leave-comment-part pt-100">
+                                                <h3 class="head-three">دیدگاه خود را بنویسید</h3>
+                                                <form class="main-form" method="post" action="/comment">
+
+
+                                                    {% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <div class="form-group mb-30">
+                                                                {{ comment_form.id_comment }}
+                                                                {{ comment_form.fullname }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group mb-30">
+                                                                {{ comment_form.subject }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="form-group mb-30">
+                                                                {{ comment_form.email }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <div class="form-group mb-30">
+                                                                {{ comment_form.massege }}
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button type="submit" class="btn-color">ارسال دیدگاه</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-section pb-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="heading-part text-center mb-30 mb-sm-20">
+                        <h2 class="main_title">محصولات مرتبط</h2>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="position-r">
+                <div class="row">
+                    <div class="product-slider owl-carousel position-initial">
+                        {% for sugests in sugest%}
+                            {% for p in sugests %}
+                                <div class="item">
+                            <div class="product-item">
+                                <div class="product-image">
+                                    <a href="{{ p.get_absolute_url }}">
+                                        <img src="{{ p.product_image.url }}" alt="">
+                                    </a>
+                                </div>
+                                <div class="product-details-outer">
+                                    <div class="product-details">
+                                        <div class="product-title">
+                                            <a href="{{ p.get_absolute_url }}">{{p.product_name }}</a>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="price">{{   p.product_price|intcomma:False   }} تومان</span>
+                                            <span class="price">{{   p.id   }} تومان</span>
+
+                                        </div>
+                                    </div>
+                                    <div class="product-details-btn">
+                                        <ul>
+                                            <li class="icon cart-icon">
+                                                <form method="post" action="/makecarts">
+                                                {% csrf_token %}
+
+                                                 <input name="productid_small" value="{{ p.id }}" type="hidden">
+                                                 <input name="count_small" value="1" type="hidden">
+
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+                                            <li class="icon wishlist-icon">
+                                                <form method="post" action="/makefavorite" >
+                                                {% csrf_token %}
+
+                                                 <input name="salam" value="{{ p.id }}"type="hidden">
+
+
+                                                   <a  class="btn btn-transparent"><span><button style="border:none" type="submit"></button> </span></a>
+                                              </form>
+
+                                            </li>
+
+                                         </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                             {% endfor %}
+                        {% endfor %}
+
+
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

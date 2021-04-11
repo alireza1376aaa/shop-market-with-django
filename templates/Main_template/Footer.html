@@ -1,0 +1,121 @@
+{% load static %}
+
+<section class="newsletter-section align-center ptb-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-9 col-12">
+                <div class="newsletter-title">
+                    <h2 class="main_title">برای خبرنامه ثبت نام کنید </h2>
+                    <p>برای دریافت آخرین محصولات تخفیف دار ثبت نام کنید </p>
+                </div>
+                <div class="newsletter-input">
+                    <form method="post">
+                         {% csrf_token %}
+                        <div class="form-group m-0">
+                            {{ register_form }}
+                        </div>
+                        <button type="submit" class="btn btn-color"><span class="d-none d-sm-block">اشتراک</span> <i class="fa fa-send d-block d-sm-none"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="footer-part">
+    <div class="container">
+        <div class="footer-top ptb-100">
+             <div class="mb_-30">
+                  <div class="row">
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <div class="footer-about mb-sm-30">
+                                <div class="footer-logo">
+                                    <a href="{% static 'index.html' %}">
+                                    <img src="{{ site.logo_image.url }}" style="height: 80px" alt="logo">
+                                    </a>
+                                </div>
+                                <p class="footer-p">{{ site.about_office }}</p>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-lg-3 col-md-6">
+                             <div class="footer-static-block">
+                                <span class="opener plus"></span>
+                                <h3 class="head-three">اطلاعات</h3>
+                                <ul class="footer-menu footer-block-contant">
+                                <li><a href="{% url 'contact_us:contact_us_form' %}">تماس با ما</a></li>
+                                <li><a href="{% url 'contact_us:rules_page'%}">شرایط و قوانین</a></li>
+                                <li><a href="{% url 'contact_us:privacy_page' %}">حریم خصوصی</a></li>
+                                </ul>
+                              </div>
+                        </div>
+                        <div class="col-12 col-lg-3 col-md-6">
+                             <div class="footer-static-block">
+                                     <span class="opener plus"></span>
+                                     <h3 class="head-three">خرید</h3>
+                                    <ul class="footer-menu footer-block-contant">
+                                    <li><a href="{% url 'product_shop:list_view_men' %}">مردانه </a></li>
+                                    <li><a href="{% url 'product_shop:list_view_women' %}">زنانه</a></li>
+                                    <li><a href="{% url 'product_shop:list_view_kids' %}">بچه گانه</a></li>
+
+                                    </ul>
+                             </div>
+                        </div>
+                        <div class="col-12 col-lg-3 col-md-6">
+                            <div class="footer-static-block">
+                                <span class="opener plus"></span>
+                                 <h3 class="head-three">تماس با ما</h3>
+                                  <div class="contact-box footer-block-contant">
+                                       <ul>
+                                            <li>
+                                                <div class="contact-thumb">
+                                                    <img src="{% static 'images/address-icon.svg' %}" alt="">
+                                                </div>
+                                                <div class="contact-box-detail">
+                                                    <p>{{ site.address }}</p>
+                                                </div>
+                                            </li>
+                                                <li>
+                                                    <div class="contact-thumb">
+                                                        <img src="{% static 'images/phone-icon.svg' %}" alt="">
+                                                    </div>
+                                                        <div class="contact-box-detail">
+                                                        <p>{{ site.phone }}</p>
+                                                    </div>
+                                                </li>
+                                            <li>
+                                                <div class="contact-thumb">
+                                                    <img src="{% static 'images/mail-icon.svg' %}" alt="">
+                                                </div>
+                                                <div class="contact-box-detail">
+                                                    <p><span class="__cf_email__" data-cfemail="1d7e7273697c7e695d746f7c736e69647178336978706d717c6978">{{ site.email }}</span></p>
+                                                </div>
+                                            </li>
+                                       </ul>
+                                </div>
+                            </div>
+                        </div>
+                  </div>
+            </div>
+        </div>
+        <div class="footer-bottom align-center">
+             <div class="row">
+                <div class="col-12">
+                    <div class="w-100">
+                        <p class="mb-0">{{ site.write_ruls }}</p>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="social-media">
+                        <ul>
+                            <li><a href="{{ site.telegrame_address }}"target="_blank"><i class="fa fa-telegram"></i></a></li>
+                            <li><a href="{{ site.twitter_address }}"target="_blank"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="{{ site.instagrame_address }}"target="_blank"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+             </div>
+        </div>
+    </div>
+</footer>

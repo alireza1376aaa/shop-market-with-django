@@ -1,0 +1,101 @@
+{% extends 'Main_template/__MAIN_tamplate.html' %}
+
+{% block content %}
+
+<div class="contant">
+    <div id="banner-part" class="banner inner-banner">
+        <div class="container">
+            <div class="bread-crumb-main">
+                <h1 class="banner-title">ثبت نام</h1>
+                <div class="breadcrumb">
+                    <ul class="inline">
+                        <li><a href="/">خانه</a></li>
+                        <li>ثبت نام</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ptb-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8 col-md-8 ">
+                    <form class="main-form full" method="post">
+                    {% csrf_token %}
+                        <div class="row">
+                                <div class="col-12 mb-20">
+                                    <div class="heading-part align-center">
+                                        <h2 class="heading">ثبت نام</h2>
+                                    </div>
+                                </div>
+                                 <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="{{register_form.username.id_for_lable}}">{{ register_form.username.label }}</label>
+                                         {{ register_form.username }}
+
+                                          {% for error in register_form.username.errors %}
+                                              <div id="emailHelp" class="form-text text-danger "><p>{{ error }}</p></div>
+
+                                          {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="{{register_form.first_name.id_for_lable}}">{{ register_form.first_name.label }}</label>
+                                        {{ register_form.first_name }}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="{{register_form.last_name.id_for_lable}}">{{ register_form.last_name.label }}</label>
+                                        {{ register_form.last_name }}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="{{register_form.email.id_for_lable}}">{{ register_form.email.label }}</label>
+                                        {{ register_form.email }}
+                                         {% for error in register_form.email.errors %}
+                                              <div id="emailHelp" class="form-text text-danger"><p>{{ error }}</p></div>
+
+                                            {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="{{register_form.password.id_for_lable}}">{{ register_form.password.label }}</label>
+                                        {{ register_form.password }}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="{{register_form.password_again.id_for_lable}}">{{ register_form.password_again.label }}</label>
+                                        {{ register_form.password_again }}
+                                         {% for error in register_form.password_again.errors %}
+                                              <div id="emailHelp" class="form-text text-danger"><p>{{ error }}</p></div>
+
+                                            {% endfor %}
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-30 dit w-100">
+                                        <div class="check-box left-side mt-15">
+
+                                        </div>
+                                    <button name="submit" type="submit" class="btn-color right-side">ثبت نام</button>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <hr>
+                                    <div class="new-account align-center mt-20"> <span>حساب کاربری دارید ؟</span>
+                                    <a class="link" title="Login Here" href="/Login">وارد شوید</a> </div>
+                                </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% load static %}
+<div class="megamenu mobile-sub-menu">
+                                     <div class="megamenu-inner-top">
+                                            <ul class="sub-menu-level1">
+                                                        {% for collectss in collect_main %}
+
+                                                <li class="level2 "> <a href="/list_view/women_main/{{ collectss.name_collect_product_main }}"><span>{{ collectss.title_collect_product_main }}</span></a>
+                                                            {% endfor %}
+
+                                                    <ul class="sub-menu-level2">
+                                                                {% for collects in collect %}
+
+                                                        <li class="level3"><a href="/list_view/women/{{ collects.name_collect_product }}"><span>■</span>{{ collects.title_collect_product }}</a></li>
+                                                              {% endfor %}
+
+                                                    </ul>
+                                                </li>
+
+                                            </ul>
+                                     </div>
+                                </div>

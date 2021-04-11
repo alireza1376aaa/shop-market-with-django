@@ -1,0 +1,25 @@
+{% load static %}
+
+<div class="category-content">
+    <h2 class="cat-title">دسته بندی اصلی</h2>
+    <ul class="pl-0 mb-0">
+    <li><a href="/list_view/men">همه</a></li>
+        {% for collectss in collect_main %}
+        <li><a href="/list_view/men_main/{{ collectss.name_collect_product_main }}">{{ collectss.title_collect_product_main }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div style="margin: 30px 0px">
+
+</div>
+<div class="category-content">
+    <h2 class="cat-title">دسته بندی ها</h2>
+    <ul class="pl-0 mb-0">
+    <li><a href="/list_view/men">همه</a></li>
+        {% for collects in collect %}
+        <li><a href="/list_view/men/{{ collects.name_collect_product }}">{{ collects.title_collect_product }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+

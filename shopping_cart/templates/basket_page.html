@@ -1,0 +1,180 @@
+{% extends 'Main_template/__MAIN_tamplate.html' %}
+{% load static %}
+{% load humanize %}
+
+
+{% block content %}
+
+
+    <div class="contant">
+        <div id="banner-part" class="banner inner-banner">
+            <div class="container">
+                <div class="bread-crumb-main">
+                     <h1 class="banner-title">سبد خرید</h1>
+                     <div class="breadcrumb">
+                         <ul class="inline">
+                            <li><a href="/">خانه</a></li>
+                            <li>سبد خرید</li>
+                            </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ptb-100">
+            <div class="container">
+                <div class="cart-item-table commun-table">
+                    <div class="table-responsive">
+                         <table class="table border mb-0">
+                            <thead>
+                                    <tr>
+                                    <th>تصویر</th>
+                                    <th>نام محصول</th>
+                                    <th>قیمت</th>
+                                    <th>تعداد</th>
+                                    <th>مبلغ کل</th>
+                                    <th>حذف</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                             {% for basket in orderDitails %}
+
+                                   <tr>
+                                    <td>
+                                        <a href="{{ basket.product.get_absolute_url }}">
+                                        <div class="product-image">
+                                        <img alt="Eshoper" src="{{ basket.product.product_image.url }}">
+                                        </div>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <div class="product-title">
+                                            <a href="{{ basket.product.get_absolute_url }}">{{ basket.product.product_name }}</a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <ul>
+                                            <li>
+                                                <div class="base-price price-box">
+                                                     {% if basket.product.product_type == 'discount'%}
+                                                    <span class="price"> تومان{{ basket.product.discount|intcomma:False }}</span>
+                                                    {% else %}
+                                                    <span class="price"> تومان{{ basket.product.product_price|intcomma:False }}</span>
+                                                {% endif %}
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                    <td>
+                                        <div class="input-box">
+
+                                         {{ basket.count }}
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="total-price price-box">
+                                            <span class="price">{{ basket.get_detail_sum|intcomma:False }} تومان</span>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="remove_order/{{ basket.id }}" class="btn small btn-color">
+                                            <i title="Remove Item From Cart" data-id="100" class="fa fa-trash cart-remove-item"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+
+
+                            {% endfor %}
+                            </tbody>
+                            </table>
+                    </div>
+                </div>
+                <div class="mb-30">
+                <div class="row">
+                <div class="col-md-6">
+                <div class="mt-30">
+
+                </div>
+                </div>
+                <div class="col-md-6">
+                <div class="mt-30 left-side float-none-sm">
+                </div>
+                </div>
+                </div>
+                </div>
+
+                <hr>
+                <div class="mtb-30">
+                <div class="row">
+                <div class="col-md-6 mb-sm-20">
+                <div class="estimate">
+                <div class="heading-part mb-20">
+                </div>
+                </div>
+                </div>
+                <div class="col-md-6">
+                <div class="cart-total-table commun-table">
+                <div class="table-responsive">
+                <table class="table border">
+                <thead>
+                <tr>
+                <th colspan="2">مبلغ کل</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>مبلغ کل</td>
+                <td>
+                <div class="price-box">
+                <span class="price">{{ total|intcomma:False }} تومان</span>
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td>هزینه ارسال</td>
+                <td>
+                    {% if total > 100000 %}
+                        <div class="price-box">
+                        <span class="price">0</span>
+                     {% else %}
+                        <div class="price-box">
+                        <span class="price">30,000 تومان</span>
+                    {% endif %}
+                </div>
+                </td>
+                </tr>
+                <tr>
+                <td><b>مبلغ قابل پرداخت</b></td>
+                <td>
+                    {% if total > 100000 %}
+                        <div class="price-box">
+                        <span class="price">{{ total|intcomma:False }} تومان </span>
+                     {% else %}
+                        <div class="price-box">
+                        <span class="price">{{totalwithtravel|intcomma:False}} تومان  </span>
+                    {% endif %}
+                </td>
+                </tr>
+                </tbody>
+                </table>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <hr>
+                <div class="mt-30">
+                <div class="row">
+                <div class="col-12">
+                <div class="left-side float-none-xs">
+                <a href="{% url 'shopping_cart:finallt_carts' %}" class="btn btn-color">ثبت نهایی</a>
+                </div>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
